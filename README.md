@@ -35,10 +35,3 @@ Se establece la conexión SSH con el servidor remoto.
 Si el directorio del proyecto no existe, se clona el repositorio desde GitHub en la ruta especificada.
 
 Se ejecuta un git pull para actualizar el repositorio con los últimos cambios de la rama main.
-
-4. Docker
-Se ejecutan comandos Docker para asegurar un entorno limpio y actualizado:
-
-Se reconstruyen las imágenes 
-
-Se levantan nuevamente los contenedores (docker-compose up -d).
