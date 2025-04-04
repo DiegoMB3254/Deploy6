@@ -1,37 +1,34 @@
-Flujo de trabajo de despliegue automático:
-Este flujo de trabajo de GitHub Actions se ejecuta cada vez que se hace un push a la rama main. A continuación, se describen los detalles del proceso paso a paso.
+Automatic Deployment Workflow:
+This GitHub Actions workflow runs every time a push is made to the main branch. Below are the step-by-step details of the process.
 
 Job: Deploy
 
-Sistema operativo: ubuntu-latest (la versión más reciente disponible de Ubuntu).
+Operating System: ubuntu-latest (the latest available version of Ubuntu).
 
-Pasos del flujo de trabajo
+Workflow Steps
+Repository Checkout
+The actions/checkout@v2 action is used to clone the repository into the execution environment.
 
-1. Checkout del repositorio
-Se utiliza la acción actions/checkout@v2 para clonar el repositorio en el entorno de ejecución.
+SSH Deployment Setup
+Environment variables are defined based on the repository's secrets, such as:
 
-2. Configuración para despliegue por SSH
-Se definen variables de entorno a partir de los secrets del repositorio, tales como:
+SSH keys
 
--Claves SSH
+Username
 
--Nombre de usuario
+Remote host
 
--Host remoto
+Project path
 
--Ruta del proyecto
+Then:
 
-Despues:
+The .ssh directory is created in the execution environment.
 
-Se crea el directorio .ssh en el entorno de ejecución.
+The private SSH key is configured for authentication.
 
-Se configura la clave privada SSH para la autenticación.
+Remote host information is added to the known hosts using ssh-keyscan.
 
-Se agregan los datos del host remoto a los hosts conocidos usando ssh-keyscan.
-
-3. Conexión SSH y despliegue remoto
-Se establece la conexión SSH con el servidor remoto.
-
-Si el directorio del proyecto no existe, se clona el repositorio desde GitHub en la ruta especificada.
-
-Se ejecuta un git pull para actualizar el repositorio con los últimos cambios de la rama main.
+SSH Connection and Remote Deployment
+An SSH connection is established with the remote server.
+If the project directory does not exist, the repository is cloned from GitHub into the specified path.
+A git pull is executed to update the repository with the latest changes from the main branch.
